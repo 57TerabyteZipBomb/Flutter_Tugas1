@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_1/register_page.dart';
+import 'package:flutter_project_1/widgets/widget_button.dart';
+import 'package:flutter_project_1/widgets/widget_textfield.dart';
 import 'home_page.dart';
 
 //Constructor
@@ -27,10 +29,47 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   //For Password visibility toggle and also the eye icon
-  bool _isPassObscured = true;
+  // bool _isPassObscured = true;
 
   //Variable for login status text
   var loginstatus = "Login Status";
+
+  void _handleLogin() {
+    String email = _emailController.text;
+    String pass = _passwordController.text;
+    if (email == widget.registeredEmail && pass == widget.registeredPassword) {
+      //Login success snackbar
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Good job'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      //Change login status text
+      setState(() {
+        loginstatus = "Logging in...";
+      });
+      //Go to home page
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(userName: widget.registeredName),
+        ),
+      );
+    } else {
+      //Login failed snackbar
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Invalid credentials'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      //Change login status text
+      setState(() {
+        loginstatus = "Failed to log in";
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +80,6 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             //Title texts
             const Text(
               "Welcome To The App",
@@ -57,109 +95,70 @@ class _LoginPageState extends State<LoginPage> {
               child: Image.asset('assets/Slime.png', width: 100, height: 150),
             ),
 
-            //Email input
             Container(
               margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-              child: TextField(
-                controller: _emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  hintText: 'Enter your email',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
-                ),
-              ),
+              child: MyTextField(textEditingController: _emailController, label: 'Email', isObscured: false,)
             ),
 
-            //Password input
             Container(
               margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: TextField(
-                controller: _passwordController,
-                //Text is shown/obscured based on _isPassObscured
-                obscureText: _isPassObscured,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  hintText: 'Enter your password',
-                  border: const OutlineInputBorder(),
-                  prefixIcon: const Icon(Icons.lock),
-                  //Eye icon toggle logic stuff
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        //Reverses _isPassObscured on click
-                        _isPassObscured = !_isPassObscured;
-                      });
-                    },
-                    //Change icon based on _isPassObscured
-                    icon: Icon(
-                      _isPassObscured
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                    ),
-                  ),
-                ),
-              ),
+              child: MyTextField(textEditingController: _passwordController, label: 'Password', isObscured: true,)
             ),
+
+            // //Password input (stateful)
+            // Commented for archive
+            // Container(
+            //   margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            //   child: TextField(
+            //     controller: _passwordController,
+            //     //Text is shown/obscured based on _isPassObscured
+            //     obscureText: _isPassObscured,
+            //     decoration: InputDecoration(
+            //       labelText: 'Password',
+            //       hintText: 'Enter your password',
+            //       border: const OutlineInputBorder(),
+            //       prefixIcon: const Icon(Icons.lock),
+            //       //Eye icon toggle logic stuff
+            //       suffixIcon: IconButton(
+            //         onPressed: () {
+            //           setState(() {
+            //             //Reverses _isPassObscured on click
+            //             _isPassObscured = !_isPassObscured;
+            //           });
+            //         },
+            //         //Change icon based on _isPassObscured
+            //         icon: Icon(
+            //           _isPassObscured ? Icons.visibility_off : Icons.visibility,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
 
             //Login status text
             Text(loginstatus),
 
-            //Login button 
+            //Login Button
             Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  String email = _emailController.text;
-                  String pass = _passwordController.text;
-                  if (email == widget.registeredEmail && pass == widget.registeredPassword) {
-                    //Login success snackbar
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Good job'),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
-                    //Change login status text
-                    setState(() {
-                      loginstatus = "Logging in...";
-                    });
-                    //Go to home page
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            HomePage(userName: widget.registeredName),
-                      ),
-                    );
-                  } else {
-                    //Login failed snackbar
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Invalid credentials'),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
-                    //Change login status text
-                    setState(() {
-                      loginstatus = "Failed to log in";
-                    });
-                  }
-                },
-                child: const Text('Login'),
+              child: CustomButton(
+                text: "Login",
+                textcolor: Colors.black,
+                onPressed: () {_handleLogin();},
               ),
             ),
 
             const SizedBox(height: 20),
 
             Center(
-              child: TextButton(
+              child: CustomButton(
+                text: 'Register', 
+                textcolor: Colors.black, 
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (_) => const RegisterPage()),
                   );
                 },
-                child: const Text("Don't have an account? Register here"),
               ),
             ),
 

@@ -40,16 +40,13 @@ class FootballPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 margin: const EdgeInsets.symmetric(vertical: 8),
-                //idk what a list tile is
+                //list tile as child of card
                 child: ListTile(
                   //style stuff
                   contentPadding: const EdgeInsets.all(16),
+                  //image
                   leading: CircleAvatar(
-                    backgroundColor: Colors.green[200],
-                    child: Text(
-                      player.number.toString(),
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    backgroundImage: AssetImage(player.imagepath),
                   ),
                   //actual tile content
                   title: Text(
@@ -60,7 +57,7 @@ class FootballPage extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    player.position,
+                    '${player.position}, #${player.number}',
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                   //tap functionality
@@ -78,10 +75,7 @@ class FootballPage extends StatelessWidget {
                     //navigate to edit page, and also pass arguments n stuff
                     Get.toNamed(
                       AppRoutes.footballedit,
-                      arguments: {
-                        'index': index,
-                        'player': player,
-                      },
+                      arguments: {'index': index, 'player': player},
                     );
                   },
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_1/pages/calculator_page.dart';
-//import 'package:flutter_project_1/login_page.dart';
+import 'package:flutter_project_1/routes/pages.dart';
+import 'package:flutter_project_1/routes/routes.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: CalculatorPage(),
+      initialRoute: AppRoutes.calculator,
+      getPages: AppPages.pages,
     );
   }
 }

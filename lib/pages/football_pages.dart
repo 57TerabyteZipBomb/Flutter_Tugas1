@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_1/controller/football_controller.dart';
-import 'package:flutter_project_1/routes/routes.dart';
+import 'package:flutter_project_1/controller/football_edit_controller.dart';
+import 'package:flutter_project_1/controller/navigation_controller.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/state_manager.dart';
@@ -73,10 +74,14 @@ class FootballPage extends StatelessWidget {
                       margin: const EdgeInsets.all(12),
                     );
                     //navigate to edit page, and also pass arguments n stuff
-                    Get.toNamed(
-                      AppRoutes.footballedit,
-                      arguments: {'index': index, 'player': player},
-                    );
+                    final navController = Get.find<NavigationController>();
+                    final editController = Get.find<FootballEditController>();
+
+                    // pass player info to the edit controller
+                    editController.loadPlayer(index, player);
+
+                    // switch to Edit tab
+                    navController.changePage(2);
                   },
                 ),
               );

@@ -1,41 +1,90 @@
-import 'package:flutter_project_1/controller/football_controller.dart';
-import 'package:flutter_project_1/objects%20idk/player_model.dart';
 import 'package:get/get.dart';
+import 'package:flutter_project_1/objects idk/player_model.dart';
+import 'package:flutter_project_1/controller/football_controller.dart';
+import 'package:flutter_project_1/controller/navigation_controller.dart';
+import 'package:flutter/material.dart';
 
-class FootballEditController extends GetxController{
-  //late since its not assigned yet
-  late int index;
-  late Rx<Player> player;
-  //find my controllers
+class FootballEditController extends GetxController {
+  int? index;
   final FootballController footballController = Get.find();
+  final NavigationController navController = Get.find();
 
-  //on initiate
+  // text controllers
+  final nameController = TextEditingController();
+  final positionController = TextEditingController();
+  final numberController = TextEditingController();
+
+  late Rx<Player> player;
+
   @override
   void onInit() {
     super.onInit();
-
-    //retrieve arguments that got passed from football page
-    final args = Get.arguments as Map<String, dynamic>;
-    index = args['index'] as int;
-    Player initialPlayer = args['player'] as Player;
-
-    player = initialPlayer.obs;
+    resetToDummy(); // always start with dummy
   }
 
-  //update functions, yay
-  void updateName(String value) => player.update((p) {
-        if (p != null) p.name = value;
-      });
+  void loadPlayer(int idx, Player p) {
+    index = idx;
+    player.value = p;
+    _syncToTextControllers();
+  }
 
-  void updatePosition(String value) => player.update((p) {
-        if (p != null) p.position = value;
-      });
+  void _syncToTextControllers() {
+    nameController.text = player.value.name;
+    positionController.text = player.value.position;
+    numberController.text = player.value.number;
+  }
 
-  void updateNumber(String value) => player.update((p) {
-        if (p != null) p.number = value;
-      });
+  void resetToDummy() {
+    index = null;
+    player = Player(
+      name: 'Dummy',
+      position: 'Unknown',
+      number: '0',
+      imagepath: 'assets/Slime.png',
+    ).obs;
+    _syncToTextControllers();
+  }
+
+  void updateName(String value) => player.update((p) { if (p != null) p.name = value; });
+  void updatePosition(String value) => player.update((p) { if (p != null) p.position = value; });
+  void updateNumber(String value) => player.update((p) { if (p != null) p.number = value; });
 
   void saveChanges() {
-    footballController.updatePlayer(index, player.value);
+    if (index == null) {
+      // dummy data
+      Get.snackbar(
+        'Error',
+        'Cannot save dummy data!',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Get.theme.colorScheme.error,
+        colorText: Get.theme.colorScheme.onError,
+      );
+    } else {
+      // update real player
+      footballController.updatePlayer(index!, player.value);
+
+      // reset to dummy for next time
+      resetToDummy();
+
+      // switch back to Players tab
+      navController.changePage(1);
+
+      // optional: success snackbar
+      Get.snackbar(
+        'Success',
+        'Player updated!',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green[700],
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  @override
+  void onClose() {
+    nameController.dispose();
+    positionController.dispose();
+    numberController.dispose();
+    super.onClose();
   }
 }

@@ -10,25 +10,12 @@ class FootballEditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //this thingy
-    final editController = Get.put(FootballEditController());
+    final editController = Get.find<FootballEditController>();
 
-    //controllers, which also has text auto assigned when opening (wow)
-    final nameController = TextEditingController(
-      text: editController.player.value.name,
-    );
-    final positionController = TextEditingController(
-      text: editController.player.value.position,
-    );
-    final numberController = TextEditingController(
-      text: editController.player.value.number.toString(),
-    );
-
-    //scaff old
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: const Text('edit yo fooball'),
+        title: const Text('edit yo fooball', style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.green[700],
         centerTitle: true,
       ),
@@ -37,10 +24,9 @@ class FootballEditPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            
-            //name input
+
             MyOtherTextField(
-              textEditingController: nameController,
+              textEditingController: editController.nameController,
               label: 'Name',
               isObscured: false,
               onChanged: editController.updateName,
@@ -48,9 +34,8 @@ class FootballEditPage extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            //position input
             MyOtherTextField(
-              textEditingController: positionController,
+              textEditingController: editController.positionController,
               label: 'Position',
               isObscured: false,
               onChanged: editController.updatePosition,
@@ -58,23 +43,20 @@ class FootballEditPage extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            //back number input
             MyOtherTextField(
-              textEditingController: numberController,
+              textEditingController: editController.numberController,
               label: 'Number',
               isObscured: false,
               onChanged: editController.updateNumber,
             ),
-            
+
             const SizedBox(height: 24),
 
-            //save button
             CustomButton(
               text: 'Save Changes',
               textcolor: Colors.white,
               onPressed: () {
                 editController.saveChanges();
-                Get.back();
               },
             ),
           ],

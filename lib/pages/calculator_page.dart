@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_1/routes/routes.dart';
+import 'package:flutter_project_1/widgets/widget_textfield_awesome.dart';
 import 'package:get/get.dart';
 import 'package:flutter_project_1/controller/calculator_controller.dart';
 import 'package:flutter_project_1/widgets/widget_button.dart';
-import 'package:flutter_project_1/widgets/widget_textfield.dart';
 
 //this file contains the page UI/Style
 class CalculatorPage extends StatelessWidget {
@@ -17,6 +16,11 @@ class CalculatorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('calc', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.green[700],
+        centerTitle: true,
+      ),
       body: Container(
         padding: EdgeInsets.all(30),
         child: Column(
@@ -24,7 +28,7 @@ class CalculatorPage extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
 
-            MyTextField(
+            MyOtherTextField(
               //controllers are set as the ones defined in calculatorController
               textEditingController: calculatorController.txtNum1,
               label: 'Input 1',
@@ -33,7 +37,7 @@ class CalculatorPage extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            MyTextField(
+            MyOtherTextField(
               textEditingController: calculatorController.txtNum2,
               label: 'Input 2',
               isObscured: false,
@@ -114,15 +118,6 @@ class CalculatorPage extends StatelessWidget {
               textcolor: Colors.white,
               onPressed: () {
                 calculatorController.clear();
-              },
-            ),
-
-            //ts important
-            CustomButton(
-              text: 'Go To Football Player Page',
-              textcolor: Colors.white,
-              onPressed: () {
-                Get.toNamed(AppRoutes.footballplayers);
               },
             ),
           ],

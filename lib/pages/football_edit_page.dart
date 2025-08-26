@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 //argghhh
 class FootballEditPage extends StatelessWidget {
-  const FootballEditPage({super.key});
+  FootballEditPage({super.key});
 
   @override
   Widget build(BuildContext context) {

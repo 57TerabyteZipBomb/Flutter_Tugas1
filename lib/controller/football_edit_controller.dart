@@ -14,40 +14,41 @@ class FootballEditController extends GetxController {
   final positionController = TextEditingController();
   final numberController = TextEditingController();
 
-  late Rx<Player> player;
+  // default value because flutter is silly
+  late Rx<Player> player = Player(
+    name: '',
+    position: '',
+    number: '',
+    imagepath: 'assets/Slime.png',
+  ).obs;
 
   @override
   void onInit() {
     super.onInit();
-    resetToDummy(); // always start with dummy
+
+    final args = Get.arguments;
+    if (args != null && args is int) {
+      loadPlayer(args);
+    }
   }
 
-  void loadPlayer(int idx, Player p) {
+  void loadPlayer(int idx) {
     index = idx;
-    player.value = p;
-    _syncToTextControllers();
-  }
-
-  void _syncToTextControllers() {
+    player.value = footballController.players[idx];
     nameController.text = player.value.name;
     positionController.text = player.value.position;
     numberController.text = player.value.number;
   }
 
-  void resetToDummy() {
-    index = null;
-    player = Player(
-      name: 'Dummy',
-      position: 'Unknown',
-      number: '0',
-      imagepath: 'assets/Slime.png',
-    ).obs;
-    _syncToTextControllers();
-  }
-
-  void updateName(String value) => player.update((p) { if (p != null) p.name = value; });
-  void updatePosition(String value) => player.update((p) { if (p != null) p.position = value; });
-  void updateNumber(String value) => player.update((p) { if (p != null) p.number = value; });
+  void updateName(String value) => player.update((p) {
+    if (p != null) p.name = value;
+  });
+  void updatePosition(String value) => player.update((p) {
+    if (p != null) p.position = value;
+  });
+  void updateNumber(String value) => player.update((p) {
+    if (p != null) p.number = value;
+  });
 
   void saveChanges() {
     if (index == null) {
@@ -63,11 +64,8 @@ class FootballEditController extends GetxController {
       // update real player
       footballController.updatePlayer(index!, player.value);
 
-      // reset to dummy for next time
-      resetToDummy();
-
       // switch back to Players tab
-      navController.changePage(1);
+      Get.back();
 
       // optional: success snackbar
       Get.snackbar(

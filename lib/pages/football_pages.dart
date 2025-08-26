@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project_1/controller/football_controller.dart';
 import 'package:flutter_project_1/controller/football_edit_controller.dart';
 import 'package:flutter_project_1/controller/navigation_controller.dart';
+import 'package:flutter_project_1/pages/football_edit_page.dart';
+import 'package:flutter_project_1/routes/routes.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/state_manager.dart';
@@ -15,15 +17,6 @@ class FootballPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        title: const Text(
-          'fooball team',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        elevation: 2,
-        backgroundColor: Colors.green[700],
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         //obx since this updates and stuff
@@ -73,15 +66,9 @@ class FootballPage extends StatelessWidget {
                       borderRadius: 12,
                       margin: const EdgeInsets.all(12),
                     );
-                    //navigate to edit page, and also pass arguments n stuff
-                    final navController = Get.find<NavigationController>();
-                    final editController = Get.find<FootballEditController>();
-
-                    // pass player info to the edit controller
-                    editController.loadPlayer(index, player);
 
                     // switch to Edit tab
-                    navController.changePage(2);
+                    Get.toNamed(AppRoutes.footballedit, arguments: index);
                   },
                 ),
               );

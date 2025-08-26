@@ -16,11 +16,6 @@ class CalculatorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('calc', style: TextStyle(fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.green[700],
-        centerTitle: true,
-      ),
       body: Container(
         padding: EdgeInsets.all(30),
         child: Column(

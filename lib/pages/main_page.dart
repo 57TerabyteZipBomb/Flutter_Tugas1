@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_1/pages/profile_page.dart';
-import 'package:flutter_project_1/routes/routes.dart';
+// import 'package:flutter_project_1/routes/routes.dart';
+// import 'package:flutter_project_1/pages/football_edit_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_project_1/controller/navigation_controller.dart';
 import 'package:flutter_project_1/pages/calculator_page.dart';
 import 'package:flutter_project_1/pages/football_pages.dart';
-import 'package:flutter_project_1/pages/football_edit_page.dart';
+
 
 class MainPage extends StatelessWidget {
   final NavigationController navController = Get.put(NavigationController());

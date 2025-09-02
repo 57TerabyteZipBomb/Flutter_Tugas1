@@ -9,9 +9,11 @@ class CalculatorPage extends StatelessWidget {
   CalculatorPage({super.key});
 
   // idk what this does to be exact but i think its important
-  final CalculatorController calculatorController = Get.put(
-    CalculatorController(),
-  );
+  // final CalculatorController calculatorController = Get.put(
+  //   CalculatorController(),
+  // );
+
+  final calculatorController = Get.find<CalculatorController>();
 
   @override
   Widget build(BuildContext context) {

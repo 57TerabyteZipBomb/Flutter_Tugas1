@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_1/pages/profile_page.dart';
-// import 'package:flutter_project_1/routes/routes.dart';
-// import 'package:flutter_project_1/pages/football_edit_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_project_1/controller/navigation_controller.dart';
 import 'package:flutter_project_1/pages/calculator_page.dart';
 import 'package:flutter_project_1/pages/football_pages.dart';
-
+import 'package:flutter_project_1/pages/profile_page.dart';
 
 class MainPage extends StatelessWidget {
   final NavigationController navController = Get.put(NavigationController());
 
-  final List<Widget> pages = [CalculatorPage(), FootballPage(), ProfilePage()];
+  //list of pages to load
+  final List<Widget> pages = [
+    CalculatorPage(), 
+    FootballPage(), 
+    ProfilePage()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,23 +46,21 @@ class MainPage extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              // Profile info (hardcoded)
               UserAccountsDrawerHeader(
                 decoration: BoxDecoration(color: Colors.green[700]),
-                accountName: const Text("John Doe"),
-                accountEmail: const Text("john.doe@email.com"),
+                accountName: const Text("Gerrard"),
+                accountEmail: const Text("gerrard.arkinara@gmail.com"),
                 currentAccountPicture: const CircleAvatar(
                   backgroundImage: AssetImage("assets/awesome.png"),
                 ),
               ),
 
-              // Sidebar tabs
               ListTile(
                 leading: Icon(Icons.calculate),
                 title: const Text("Calculator"),
                 onTap: () {
                   navController.changePage(0);
-                  Navigator.pop(context); // close drawer
+                  Navigator.pop(context);
                 },
               ),
               ListTile(
@@ -88,10 +88,7 @@ class MainPage extends StatelessWidget {
           selectedItemColor: Colors.green[700],
           unselectedItemColor: Colors.grey,
           items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calculate),
-              label: "Calculator",
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.calculate), label: "Calculator"),
             BottomNavigationBarItem(icon: Icon(Icons.people), label: "Players"),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           ],

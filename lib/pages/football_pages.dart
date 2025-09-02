@@ -11,7 +11,7 @@ import 'package:get/state_manager.dart';
 //what is going on bro
 class FootballPage extends StatelessWidget {
   FootballPage({super.key});
-  final FootballController footballController = Get.put(FootballController());
+  final footballController = Get.find<FootballController>();
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ class FootballBinding extends Bindings {
 
   @override
   void dependencies() {
-    Get.put(FootballController());
+    Get.lazyPut<FootballController>(() => FootballController());
   }
 
 }

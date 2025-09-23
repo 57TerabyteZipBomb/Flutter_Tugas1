@@ -6,7 +6,7 @@ class CalculatroBinding extends Bindings{
   @override
   void dependencies() {
     //only called when needed
-    Get.put(CalculatorController());
+    Get.lazyPut<CalculatorController>(() => CalculatorController());
   }
   
 }

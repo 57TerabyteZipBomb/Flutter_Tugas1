@@ -16,7 +16,7 @@ class FootballPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16),
         //obx since this updates and stuff

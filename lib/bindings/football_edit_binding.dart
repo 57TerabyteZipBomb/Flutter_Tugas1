@@ -4,6 +4,6 @@ import 'package:get/get.dart';
 class FootballEditBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(FootballEditController());
+    Get.lazyPut<FootballEditController>(() => FootballEditController());
   }
 }

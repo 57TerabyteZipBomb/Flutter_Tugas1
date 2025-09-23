@@ -10,7 +10,7 @@ class MyOtherTextField extends StatelessWidget {
     super.key,
     required this.textEditingController,
     required this.label,
-    required this.isObscured,
+    this.isObscured = false,
     this.onChanged,
   });
 

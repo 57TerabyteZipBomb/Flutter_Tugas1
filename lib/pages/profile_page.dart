@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_1/controller/profile_controller.dart';
+import 'package:flutter_project_1/widgets/widget_button.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+
+  final controller = Get.find<ProfileController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -49,6 +54,8 @@ class ProfilePage extends StatelessWidget {
             ),
 
             const SizedBox(height: 16),
+
+            CustomButton(onPressed: controller.logout, text: 'Log Out',)
           ],
         ),
       ),

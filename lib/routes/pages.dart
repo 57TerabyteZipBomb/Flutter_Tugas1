@@ -1,3 +1,10 @@
+import 'package:flutter_project_1/bindings/calculator_binding.dart';
+import 'package:flutter_project_1/bindings/football_binding.dart';
+import 'package:flutter_project_1/bindings/login_bindigs.dart';
+import 'package:flutter_project_1/bindings/profile_binding.dart';
+import 'package:flutter_project_1/bindings/splashscreen_binding.dart';
+import 'package:flutter_project_1/pages/newlogin_page.dart';
+import 'package:flutter_project_1/pages/splashscreen_page.dart';
 import 'package:flutter_project_1/routes/routes.dart';
 import 'package:get/get.dart';
 import 'package:flutter_project_1/pages/main_page.dart';
@@ -23,10 +30,12 @@ class AppPages {
         Get.put(FootballEditController());
       }),
     ),
-    // These are still declared for navigation flexibility,
-    // but CalculatorController & FootballController are now provided by MainBinding.
-    GetPage(name: AppRoutes.calculator, page: () => CalculatorPage()),
-    GetPage(name: AppRoutes.footballplayers, page: () => FootballPage()),
-    GetPage(name: AppRoutes.profile, page: () => ProfilePage()),
+    // these are still declared for navigation flexibility,
+    // but the bindings for calculator and football are now provided by MainBinding.
+    GetPage(name: AppRoutes.calculator, page: () => CalculatorPage(), binding: CalculatroBinding()),
+    GetPage(name: AppRoutes.footballplayers, page: () => FootballPage(), binding: FootballBinding()),
+    GetPage(name: AppRoutes.profile, page: () => ProfilePage(), binding: ProfileBinding()),
+    GetPage(name: AppRoutes.splash, page: () => SplashscreenPage(), binding: SplashscreenBinding()),
+    GetPage(name: AppRoutes.login, page: () => NewloginPage(), binding: LoginBindig()),
   ];
 }

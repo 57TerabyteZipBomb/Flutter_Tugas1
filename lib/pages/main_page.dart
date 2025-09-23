@@ -38,10 +38,12 @@ class MainPage extends StatelessWidget {
           elevation: 2,
         ),
 
+        //this is pretty important
         body: IndexedStack(
           index: navController.currentIndex.value,
           children: pages,
         ),
+        
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,

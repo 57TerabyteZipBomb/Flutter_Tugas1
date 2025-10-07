@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_1/controller/football_controller.dart';
-// import 'package:flutter_project_1/controller/football_edit_controller.dart';
-// import 'package:flutter_project_1/controller/navigation_controller.dart';
-// import 'package:flutter_project_1/pages/football_edit_page.dart';
 import 'package:flutter_project_1/routes/routes.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/state_manager.dart';
 
 //what is going on bro
-class FootballPage extends StatelessWidget {
-  FootballPage({super.key});
+class FootballPageMobile extends StatelessWidget {
+  FootballPageMobile({super.key});
   final footballController = Get.find<FootballController>();
 
   @override

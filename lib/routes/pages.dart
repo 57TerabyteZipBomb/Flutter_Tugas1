@@ -1,17 +1,19 @@
 import 'package:flutter_project_1/bindings/calculator_binding.dart';
 import 'package:flutter_project_1/bindings/contact_binding.dart';
+import 'package:flutter_project_1/bindings/example_binding.dart';
 import 'package:flutter_project_1/bindings/football_binding.dart';
 import 'package:flutter_project_1/bindings/login_bindigs.dart';
 import 'package:flutter_project_1/bindings/profile_binding.dart';
 import 'package:flutter_project_1/bindings/splashscreen_binding.dart';
 import 'package:flutter_project_1/pages/contact_page.dart';
+import 'package:flutter_project_1/pages/example_page.dart';
+import 'package:flutter_project_1/pages/football_page.dart';
 import 'package:flutter_project_1/pages/newlogin_page.dart';
 import 'package:flutter_project_1/pages/splashscreen_page.dart';
 import 'package:flutter_project_1/routes/routes.dart';
 import 'package:get/get.dart';
 import 'package:flutter_project_1/pages/main_page.dart';
 import 'package:flutter_project_1/pages/calculator_page.dart';
-import 'package:flutter_project_1/pages/football_pages.dart';
 import 'package:flutter_project_1/pages/football_edit_page.dart';
 import 'package:flutter_project_1/pages/profile_page.dart';
 
@@ -37,6 +39,7 @@ class AppPages {
     GetPage(name: AppRoutes.profile, page: () => ProfilePage(), binding: ProfileBinding()),
     GetPage(name: AppRoutes.splash, page: () => SplashscreenPage(), binding: SplashscreenBinding()),
     GetPage(name: AppRoutes.login, page: () => NewloginPage(), binding: LoginBindig()),
-    GetPage(name: AppRoutes.contact, page: () => ContactPage(), binding: ContactBinding())
+    GetPage(name: AppRoutes.contact, page: () => ContactPage(), binding: ContactBinding()),
+    GetPage(name: AppRoutes.example, page: () => ExamplePage(), binding: ExampleBinding())
   ];
 }

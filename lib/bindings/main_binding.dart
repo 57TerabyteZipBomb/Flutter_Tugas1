@@ -11,5 +11,6 @@ class MainBinding extends Bindings {
     Get.lazyPut<CalculatorController>(() => CalculatorController());
     Get.lazyPut<FootballController>(() => FootballController());
     Get.lazyPut<ProfileController>(() => ProfileController());
+    //Get.lazyPut<ContactController>(() => ContactController());
   }
 }

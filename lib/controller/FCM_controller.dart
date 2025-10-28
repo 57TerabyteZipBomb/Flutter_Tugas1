@@ -1,29 +1,52 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 
 class FcmController extends GetxController {
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
+  final FlutterLocalNotificationsPlugin _localNotifications = FlutterLocalNotificationsPlugin();
 
   @override
   void onInit() {
     super.onInit();
-    requestPermissions();
-    getDeviceToken();
-    handleForegroundMessages();
+    _requestPermission();
+    _initLocalNotifications();
+    _initForegroundListener();
   }
 
-  void requestPermissions() async {
+  void _requestPermission() async {
     await _messaging.requestPermission();
   }
 
-  void getDeviceToken() async {
-    String? token = await _messaging.getToken();
-    print("FCM Token: $token");
+  void _initLocalNotifications() async {
+    const AndroidInitializationSettings androidInit =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    const InitializationSettings initSettings =
+        InitializationSettings(android: androidInit);
+
+    await _localNotifications.initialize(initSettings);
   }
 
-  void handleForegroundMessages() {
+  void _initForegroundListener() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print("Foreground message: ${message.notification?.title}");
+      final notification = message.notification;
+
+      if (notification != null) {
+        _localNotifications.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          const NotificationDetails(
+            android: AndroidNotificationDetails(
+              'high_importance_channel',
+              'High Importance Notifications',
+              importance: Importance.max,
+              priority: Priority.high,
+            ),
+          ),
+        );
+      }
     });
   }
 }

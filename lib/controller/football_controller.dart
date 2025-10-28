@@ -1,4 +1,4 @@
-import 'package:flutter_project_1/objects%20idk/player_model.dart';
+import 'package:flutter_project_1/models/player_model.dart';
 import 'package:get/get.dart';
 
 class FootballController extends GetxController{

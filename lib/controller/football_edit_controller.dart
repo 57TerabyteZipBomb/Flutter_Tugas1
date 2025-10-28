@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:flutter_project_1/objects idk/player_model.dart';
+import 'package:flutter_project_1/models/player_model.dart';
 import 'package:flutter_project_1/controller/football_controller.dart';
 import 'package:flutter_project_1/controller/navigation_controller.dart';
 import 'package:flutter/material.dart';

@@ -8,4 +8,5 @@ class AppRoutes{
   static const String login = '/login';
   static const String contact = '/contact';
   static const String example = '/example';
+  static const String loginapi = '/loginapi';
 }

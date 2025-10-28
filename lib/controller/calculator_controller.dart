@@ -23,7 +23,7 @@ class CalculatorController extends GetxController {
     if (value % 1 == 0) {
       return value.toInt().toString();
     } else {
-      return value.toStringAsFixed(2);
+      return value.toStringAsFixed(10);
     }
   }
 

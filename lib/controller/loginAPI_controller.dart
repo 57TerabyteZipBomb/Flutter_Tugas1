@@ -39,8 +39,7 @@ class LoginapiController extends GetxController {
     } catch (e) {
       Get.snackbar("Error", "Exception: $e");
       print(e);
-    } finally {
-      isLoading.value = false;
     }
+    isLoading.value = false;
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_project_1/bindings/example_binding.dart';
 import 'package:flutter_project_1/bindings/football_binding.dart';
 import 'package:flutter_project_1/bindings/loginAPI_binding.dart';
 import 'package:flutter_project_1/bindings/login_bindigs.dart';
+import 'package:flutter_project_1/bindings/premier_binding.dart';
 import 'package:flutter_project_1/bindings/profile_binding.dart';
 import 'package:flutter_project_1/bindings/splashscreen_binding.dart';
 import 'package:flutter_project_1/pages/contact_page.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_project_1/pages/example_page.dart';
 import 'package:flutter_project_1/pages/football_page.dart';
 import 'package:flutter_project_1/pages/loginAPI_page.dart';
 import 'package:flutter_project_1/pages/newlogin_page.dart';
+import 'package:flutter_project_1/pages/premier_table.dart';
 import 'package:flutter_project_1/pages/splashscreen_page.dart';
 import 'package:flutter_project_1/routes/routes.dart';
 import 'package:get/get.dart';
@@ -44,5 +46,6 @@ class AppPages {
     GetPage(name: AppRoutes.contact, page: () => ContactPage(), binding: ContactBinding()),
     GetPage(name: AppRoutes.example, page: () => ExamplePage(), binding: ExampleBinding()),
     GetPage(name: AppRoutes.loginapi, page: () => LoginapiPage(), binding: LoginapiBinding()),
+    GetPage(name: AppRoutes.premiertable, page: () => PremierTablePage(), binding: PremierBinding()),
   ];
 }

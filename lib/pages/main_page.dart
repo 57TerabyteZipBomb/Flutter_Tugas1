@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_1/controller/FCM_controller.dart';
 import 'package:flutter_project_1/pages/football_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_project_1/controller/navigation_controller.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_project_1/pages/profile_page.dart';
 
 class MainPage extends StatelessWidget {
   final NavigationController navController = Get.put(NavigationController());
+  final FcmController tomfoolery = Get.find<FcmController>();
 
   //list of pages to load
   final List<Widget> pages = [

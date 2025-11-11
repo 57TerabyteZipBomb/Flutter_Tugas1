@@ -20,22 +20,23 @@ class ProfilePage extends StatelessWidget {
             Center(
               child: CircleAvatar(
                 radius: 50,
-                backgroundImage: const AssetImage("assets/awesome.png"),
-                backgroundColor: Colors.green[100],
+                backgroundImage: controller.photoUrl.isNotEmpty
+                    ? NetworkImage(controller.photoUrl)
+                    : const AssetImage("assets/awesome.png") as ImageProvider,
               ),
             ),
 
             const SizedBox(height: 16),
 
-            const Text(
-              "Gerrard Yadzan Arkinara",
+            Text(
+              controller.username,
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 8),
 
             Text(
-              "gerrard.arkinara@gmail.com",
+              controller.email,
               style: TextStyle(fontSize: 16, color: Colors.grey[600]),
             ),
 
@@ -55,7 +56,7 @@ class ProfilePage extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            CustomButton(onPressed: controller.logout, text: 'Log Out',)
+            CustomButton(onPressed: controller.logout, text: 'Log Out'),
           ],
         ),
       ),

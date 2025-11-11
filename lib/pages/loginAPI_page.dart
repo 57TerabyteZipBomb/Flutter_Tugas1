@@ -33,17 +33,25 @@ class LoginapiPage extends StatelessWidget {
               isObscured: true,
             ),
             const SizedBox(height: 30),
-
             //change between loading circle and button based on isloading
-            Obx(() => controller.isLoading.value
-                ? const Center(child: CircularProgressIndicator())
-                : CustomButton(
-                    text: "Login",
-                    textcolor: Colors.white,
-                    onPressed: () {
-                      controller.loginAPI();
-                    },
-                  )),
+            Obx(
+              () => controller.isLoading.value
+                  ? const Center(child: CircularProgressIndicator())
+                  : CustomButton(
+                      text: "Login",
+                      textcolor: Colors.white,
+                      onPressed: () {
+                        controller.loginAPI();
+                      },
+                    ),
+            ),
+            const SizedBox(height: 30),
+
+            CustomButton(
+              text: "Login with Google",
+              textcolor: Colors.white,
+              onPressed: controller.loginWithGoogle,
+            ),
           ],
         ),
       ),
